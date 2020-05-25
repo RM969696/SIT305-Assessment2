@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">记账簿</string>
+    <string name="homeBtn">明细</string>
+    <string name="addBtn">记账</string>
+    <string name="statisticsBtn">统计</string>
+    <string name="nameTitle">交易方:</string>
+    <string name="noteTitle">备注:</string>
+    <string name="valueTitle">金额(支出输入负数):</string>
+    <string name="orderIDTitle">订单号:</string>
+    <string name="timeTitle">交易时间(不选择则为当前时间):</string>
+    <string name="selectTime">选择时间</string>
+    <string name="Save">保存</string>
+    <string name="SaveSuccess">保存成功</string>
+
+    <!--ERROR-->
+    <string name="TargetCanNotBeEmpty">交易方不能为空!</string>
+    <string name="SaveFailed">保存失败!</string>
+</resources>
