@@ -1,6 +1,7 @@
 package com.example.accountbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,7 +18,6 @@ import com.example.accountbook.Data.AccountData;
 import com.example.accountbook.Data.Account_info;
 import com.example.accountbook.Fragment.AddFragment;
 import com.example.accountbook.Fragment.HomePageFragment;
-import com.example.accountbook.Fragment.StatisticsFragment;
 import com.example.accountbook.Helper.DateBaseHelper;
 
 import java.util.ArrayList;
@@ -26,27 +26,25 @@ public class MainActivity extends AppCompatActivity {
 
     private HomePageFragment homePageFragment;
     private AddFragment addFragment;
-    private StatisticsFragment statisticsFragment;
-
     private RadioButton homeBtn;
     private RadioButton addBtn;
-    private RadioButton statisticsBtn;
+    //private RadioButton statisticsBtn;
+
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new DateBaseHelper(this);
+        new DateBaseHelper(this);//初始化数据库
 
         homeBtn = findViewById(R.id.homeBtn);
         addBtn = findViewById(R.id.addBtn);
-        statisticsBtn = findViewById(R.id.statisticsBtn);
 
         homeBtn.setOnClickListener(btnClicked);
         addBtn.setOnClickListener(btnClicked);
-        statisticsBtn.setOnClickListener(btnClicked);
 
-        homeBtn.setChecked(true);
+        //显示首页
         initFragmnet(R.id.homeBtn);
     }
 
@@ -57,49 +55,49 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //根据id显示fragment
     private void initFragmnet(int id)
     {
-        FragmentManager fm =  getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
         switch (id)
         {
             case R.id.homeBtn:
-                if(homePageFragment==null)
-                    homePageFragment = new HomePageFragment();
-                transaction.replace(R.id.fragmentLayout,homePageFragment);
-                transaction.commit();
+                showHomeFragment();
                 break;
             case R.id.addBtn:
-                if(addFragment==null)
-                    addFragment = new AddFragment();
-                transaction.replace(R.id.fragmentLayout,addFragment);
-                transaction.commit();
-                break;
-            case R.id.statisticsBtn:
-                if(statisticsFragment==null)
-                    statisticsFragment = new StatisticsFragment();
-                transaction.replace(R.id.fragmentLayout,statisticsFragment);
-                transaction.commit();
+                showAddFragment(null);
                 break;
         }
     }
 
-
-    private void insertData()
+    //主页fragment
+    public void showHomeFragment()
     {
-        //打开连接，写入数据
-        Log.d("order","1");
-
-        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//创建 or 打开 可读/写的数据库
-        Log.d("order","2");
-        ContentValues values=new ContentValues();
-        values.put("age",10);
-        values.put("email","#.cc");
-        values.put("name","xiaoli");
-        //
-        Log.d("order","3");
-        long student_Id=db.insert("student",null,values);
-        db.close();
-        Log.d("insertResult",String.valueOf(student_Id));
+        if(homePageFragment!=null && currentFragment == homePageFragment) return;;
+        //调用系统方法，切换fragment
+        FragmentManager fm =  getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        if(homePageFragment==null)
+            homePageFragment = new HomePageFragment();
+        transaction.replace(R.id.fragmentLayout,homePageFragment);
+        transaction.commit();
+        homeBtn.setChecked(true);
+        currentFragment = homePageFragment;
     }
+
+    //记账fragment，传入null表示为新增，否则为修改
+    public void showAddFragment(Account_info info)
+    {
+        if(addFragment!=null && currentFragment == addFragment) return;;
+        FragmentManager fm =  getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        if(addFragment==null)
+            addFragment = new AddFragment();
+
+        transaction.replace(R.id.fragmentLayout,addFragment);
+        transaction.commit();
+        addFragment.init(info);
+        addBtn.setChecked(true);
+        currentFragment = addFragment;
+    }
+
 }
