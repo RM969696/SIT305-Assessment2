@@ -89,18 +89,18 @@
                 android:textColor="@drawable/text_selector"
                 android:background="@drawable/menu_btn_selector"
                 />
-            <RadioButton
-                android:id="@+id/statisticsBtn"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/statisticsBtn"
-                android:gravity="center"
-                android:button="@null"
-                android:textSize="16dp"
-                android:textColor="@drawable/text_selector"
-                android:background="@drawable/menu_btn_selector"
-                />
+            <!--            <RadioButton-->
+            <!--                android:id="@+id/statisticsBtn"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:text="@string/statisticsBtn"-->
+            <!--                android:gravity="center"-->
+            <!--                android:button="@null"-->
+            <!--                android:textSize="16dp"-->
+            <!--                android:textColor="@drawable/text_selector"-->
+            <!--                android:background="@drawable/menu_btn_selector"-->
+            <!--                />-->
 
         </RadioGroup>>
 
