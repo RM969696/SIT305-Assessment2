@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton addBtn;
     //private RadioButton statisticsBtn;
 
+    //当前打开的fragment，重复打开，return
     private Fragment currentFragment;
 
     @Override
