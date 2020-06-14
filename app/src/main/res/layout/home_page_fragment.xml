@@ -3,12 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.accountbook.Fragment.HomePageFragment"
     android:paddingTop="10dp">
 
+    <Spinner android:id="@+id/dateSpinner"
+        android:layout_height="50dp"
+        android:layout_width="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="10dp"
+        android:spinnerMode="dropdown"
+        android:saveEnabled="false"
+        />
+
+    <TextView android:id="@+id/emptyTipTxt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:text="@string/emptyMsg"
+        android:visibility="gone"/>
+
+    <Spinner android:id="@+id/typeSpinner"
+        android:layout_height="50dp"
+        android:layout_width="150dp"
+        app:layout_constraintLeft_toRightOf="@id/dateSpinner"
+        android:layout_marginLeft="20dp"
+        android:spinnerMode="dropdown"
+        android:saveEnabled="false"
+        android:gravity="right"
+        />
+
     <ScrollView android:id="@+id/scroll"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/dateSpinner"
+        android:layout_marginTop="20dp">
 
         <LinearLayout android:id="@+id/root"
             android:layout_height="match_parent"

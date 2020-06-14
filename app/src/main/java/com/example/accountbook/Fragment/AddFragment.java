@@ -246,4 +246,3 @@ public class AddFragment extends Fragment {
                 ,calendar.get(Calendar.MINUTE),true).show();
     }
 }
-

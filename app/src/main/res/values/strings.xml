@@ -1,18 +1,36 @@
 <resources>
     <string name="app_name">记账簿</string>
-    <string name="homeBtn">明细</string>
-    <string name="addBtn">记账</string>
-    <string name="statisticsBtn">统计</string>
-    <string name="nameTitle">交易方:</string>
-    <string name="noteTitle">备注:</string>
-    <string name="valueTitle">金额(支出输入负数):</string>
-    <string name="orderIDTitle">订单号:</string>
-    <string name="timeTitle">交易时间(不选择则为当前时间):</string>
-    <string name="selectTime">选择时间</string>
-    <string name="Save">保存</string>
-    <string name="SaveSuccess">保存成功</string>
-
+    <string name="homeBtn">Details</string>
+    <string name="addBtn">Record</string>
+    <string name="nameTitle">Target:</string>
+    <string name="noteTitle">Note:</string>
+    <string name="valueTitle">Price(expense inputs negative):</string>
+    <string name="orderIDTitle">OrderID:</string>
+    <string name="timeTitle">Time(If not selected,set to the current time):</string>
+    <string name="timeTitle2">Time(If not selected,don\'t modify):</string>
+    <string name="selectTime">Choose Time</string>
+    <string name="Save">Save</string>
+    <string name="SaveSuccess">Save Success</string>
+    <string name="UpdateSuccess">Modify Success</string>
+    <string name="UpdateTip">Currently in modification status, switch tabs to cancel modification</string>
+    <string name="Update">Modify</string>
+    <string name="emptyMsg">No Message，Click \'Record\' to Record</string>
+    <string name="DialogTitle">Warring</string>
+    <string name="DialogContent">Do you want to delete？</string>
+    <string name="CancleBtn">Cancle</string>
+    <string name="OkBtn">OK</string>
+    <string name="DeleteSuccess">Delete Success</string>
+    <string name="BottomTip">Click in the space to close</string>
+    <string name="All">All</string>
+    <string name="In">Income</string>
+    <string name="Out">Expense</string>
+    <string name="TargetTitle">Target:%s</string>
+    <string name="NoteTitle">Note:%s</string>
+    <string name="TypeTitle">Type:%s</string>
+    <string name="PriceTitle">Price:%s</string>
+    <string name="OrderIDTitle">OrderID:%s</string>
+    <string name="TimeTitle">Time:%s</string>
     <!--ERROR-->
-    <string name="TargetCanNotBeEmpty">交易方不能为空!</string>
-    <string name="SaveFailed">保存失败!</string>
+    <string name="TargetCanNotBeEmpty">Target Can not be null!</string>
+    <string name="SaveFailed">Save Failed!</string>
 </resources>

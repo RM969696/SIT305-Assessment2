@@ -13,7 +13,7 @@ public class Account_info {
 
 
     public int id;//id
-    public int value;//金额>0为收入 ，<0 为消费
+    public float value;//金额>0为收入 ，<0 为消费
     public String orderID;//订单号
     public String time;//时间
     public String target;//交易方

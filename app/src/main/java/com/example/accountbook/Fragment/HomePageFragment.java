@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import com.example.accountbook.Data.AccountData;
 import com.example.accountbook.Data.Account_info;
 import com.example.accountbook.Helper.DateBaseHelper;
+import com.example.accountbook.Helper.TipHelper;
 import com.example.accountbook.MainActivity;
 import com.example.accountbook.R;
 import com.example.accountbook.layout.AccountMsgItemLayout;
@@ -89,7 +90,7 @@ public class HomePageFragment extends Fragment {
         if(dateList==null)
         {
             dateList=new ArrayList<>();
-            dateList.add("全部");
+            dateList.add(TipHelper.getContent(mainActivity.getResources(),R.string.All));
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);//现在的年份
             int month = calendar.get(Calendar.MONTH)+1;//现在的月份
@@ -121,9 +122,9 @@ public class HomePageFragment extends Fragment {
         if(typeList==null)
         {
             typeList=new ArrayList<>();
-            typeList.add("全部");
-            typeList.add("收入");
-            typeList.add("支出");
+            typeList.add(TipHelper.getContent(mainActivity.getResources(),R.string.All));
+            typeList.add(TipHelper.getContent(mainActivity.getResources(),R.string.In));
+            typeList.add(TipHelper.getContent(mainActivity.getResources(),R.string.Out));
         }
         if(typeAdapterList ==null)
         {

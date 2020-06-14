@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         switch (id)
         {
             case R.id.homeBtn:
-                showHomeFragment();
+                    showHomeFragment();
                 break;
             case R.id.addBtn:
-                showAddFragment(null);
+                    showAddFragment(null);
                 break;
         }
     }

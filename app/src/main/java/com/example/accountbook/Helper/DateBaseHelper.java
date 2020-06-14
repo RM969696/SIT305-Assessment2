@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.example.accountbook.Data.Account_info;
 
-
+//数据库管理基类
 public class DateBaseHelper extends SQLiteOpenHelper {
 
     public static DateBaseHelper Instance;
@@ -28,7 +28,7 @@ public class DateBaseHelper extends SQLiteOpenHelper {
         //创建数据表
         String CREATE_TABLE_STUDENT="CREATE TABLE "+ Account_info.TableName+"("
                 +Account_info.Key_ID+" INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                +Account_info.Key_Value+" INTEGER, "
+                +Account_info.Key_Value+" FLOAT, "
                 +Account_info.Key_OrderID+" TEXT, "
                 +Account_info.Key_Time+" TEXT, "
                 +Account_info.Key_Target+" TEXT, "
@@ -43,11 +43,6 @@ public class DateBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("helper","onupgrade");
-        //如果旧表存在，删除，所以数据将会消失
-        db.execSQL("DROP TABLE IF EXISTS "+ Account_info.TableName);
-
-        //再次创建表
-        onCreate(db);
     }
 }
 

@@ -15,8 +15,8 @@
         <item name="android:windowFrame">@null</item>
         <!--设置无标题-->
         <item name="android:windowNoTitle">true</item>
-        <!--是否浮现在activity之上-->
-        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上,设置为true之后，界面布局的matchparent失效，必须使用绝对值定义宽和高-->
+        <item name="android:windowIsFloating">false</item>
         <!--是否半透明-->
         <item name="android:windowIsTranslucent">true</item>
         <!--设置窗口内容不覆盖-->
@@ -26,7 +26,8 @@
         <!--背景是否模糊显示-->
         <item name="android:backgroundDimEnabled">true</item>
 
-        <item name="android:windowFullscreen">true</item>
+        <!-- 属性根据前面一个界面的来设置，true：显示状态栏，false不显示，若与前一个界面不一样，会有突兀感-->
+        <item name="android:windowFullscreen">false</item>
     </style>
 
 </resources>
