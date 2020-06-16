@@ -2,7 +2,7 @@ package com.example.accountbook.Data;
 
 import java.util.List;
 
-//存放所有账单信息数据
+//store all the information of each expense
 public class AccountData {
 
     private static AccountData instance;
@@ -12,10 +12,10 @@ public class AccountData {
             instance = new AccountData();
         return instance;
     }
-    //所有账单
+
     public List<Account_info> infoList;
 
-    //根据id获取账单
+    //get ID
     public  Account_info GetInfoByID(int id)
     {
         if(infoList == null)

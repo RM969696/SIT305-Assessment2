@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.util.Log;
 import android.widget.Toast;
 
-//提示帮助类
+
 public class TipHelper {
 
     public static final String packageName = "com.example.accountbook";
@@ -27,7 +27,7 @@ public class TipHelper {
         return  value;
     }
 
-    //id未知时，根据name获取string配置
+    //get the name string
     public static void showContentTipByKey(Context context,String key)
     {
         Toast.makeText(context,getTip(context.getResources(),key),Toast.LENGTH_SHORT).show();
@@ -48,7 +48,7 @@ public class TipHelper {
         return  value;
     }
 
-    //根据id获取string配置，并显示
+    //get the string via id
     public static void showContentTip(Context context,int resID)
     {
         Toast.makeText(context,getContent(context.getResources(),resID),Toast.LENGTH_SHORT).show();

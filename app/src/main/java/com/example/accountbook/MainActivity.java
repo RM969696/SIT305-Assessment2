@@ -30,14 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton addBtn;
     //private RadioButton statisticsBtn;
 
-    //当前打开的fragment，重复打开，return
     private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new DateBaseHelper(this);//初始化数据库
+        new DateBaseHelper(this);//initialize the database
 
         homeBtn = findViewById(R.id.homeBtn);
         addBtn = findViewById(R.id.addBtn);
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         homeBtn.setOnClickListener(btnClicked);
         addBtn.setOnClickListener(btnClicked);
 
-        //显示首页
+        //show the main page
         initFragmnet(R.id.homeBtn);
     }
 
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    //根据id显示fragment
+    //show the fragment by id
     private void initFragmnet(int id)
     {
         switch (id)
@@ -70,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //主页fragment
+
     public void showHomeFragment()
     {
         if(homePageFragment!=null && currentFragment == homePageFragment) return;;
-        //调用系统方法，切换fragment
+        //switch the fragment
         FragmentManager fm =  getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         if(homePageFragment==null)
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         currentFragment = homePageFragment;
     }
 
-    //记账fragment，传入null表示为新增，否则为修改
+    //addfragment
     public void showAddFragment(Account_info info)
     {
         if(addFragment!=null && currentFragment == addFragment) return;;

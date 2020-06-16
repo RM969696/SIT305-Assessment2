@@ -31,7 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-//录入/修改账单
+//add new entry and edit entries
 public class AddFragment extends Fragment {
     private MainActivity mainActivity;
 
@@ -44,17 +44,16 @@ public class AddFragment extends Fragment {
     private TextView timeTitleTxt;
     private TextView updateTipTxt;
 
-    //是否选择了日期
+    //the flag to identify if the users selected the date for the entry
     private boolean selectDate;
 
-    //选择的日期数据
+    //the date and time of entry
     private int _year;
     private int _month;
     private int _day;
     private int _hour;
     private int _minute;
 
-    //要修改的账单,为空表示为新加账单
     private Account_info info;
 
     @Override
@@ -80,7 +79,7 @@ public class AddFragment extends Fragment {
         okBtn.setOnClickListener(clickListener);
         setTimeBtn.setOnClickListener(clickListener);
 
-        //初始化，根据新增/修改 赋值
+        //initialize the data and get the value
         if(info == null)
         {
             nameTxt.setText("");
@@ -107,7 +106,7 @@ public class AddFragment extends Fragment {
         return  view;
     }
 
-    //初始化数据，此方法会先于oncreate，oncreateview执行
+    //before oncreate, initialize the data
     public void init(Account_info _info)
     {
         info = _info;
@@ -125,10 +124,10 @@ public class AddFragment extends Fragment {
     };
 
 
-    //保存数据
+    //save data
     private void saveData()
     {
-        //打开连接，写入数据
+        //write the value
         String name = nameTxt.getText().toString();
         if(name == null || name.equals(""))
         {
@@ -140,7 +139,7 @@ public class AddFragment extends Fragment {
         float value = Float.parseFloat(valueTxt.getText().toString());
         String orderID = orderIDTxt.getText().toString();
         String time = "";
-        //没有选择日期，则根据新增/修改设置默认日期
+        //if user did not selected the data, get the current time
         if(!selectDate)
         {
             if(info == null)
@@ -150,7 +149,7 @@ public class AddFragment extends Fragment {
         }
         else
         {
-            //格式化时间，获取时间戳
+            //clear the time and get the time value
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             StringBuilder builder = new StringBuilder();
             builder.append(_year).append("-")
@@ -169,8 +168,8 @@ public class AddFragment extends Fragment {
             }
         }
 
-        //赋值，准备写入数据库
-        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//创建 or 打开 可读/写的数据库
+        //write to database
+        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//create or open the database
         ContentValues values=new ContentValues();
         values.put(Account_info.Key_Target,name);
         values.put(Account_info.Key_Note,note);
@@ -179,13 +178,13 @@ public class AddFragment extends Fragment {
         values.put(Account_info.Key_Time,time);
 
         try {
-            if(info == null)//新增数据
+            if(info == null)//add new entry
             {
                 long student_Id=db.insert(Account_info.TableName,null,values);
                 Log.d("insertResult",String.valueOf(student_Id));
                 TipHelper.showContentTip(mainActivity,R.string.SaveSuccess);
             }
-            else //更新数据
+            else //edit entry
             {
                 int resultID = db.update(Account_info.TableName,values,Account_info.Key_ID + "=" +info.id,null);
                 Log.d("updateResult",String.valueOf(resultID));
@@ -198,7 +197,7 @@ public class AddFragment extends Fragment {
             Log.d("AddFragment_Exc",e.getMessage());
         }
         finally {
-            //重置界面
+
             nameTxt.setText("");
             valueTxt.setText("");
             orderIDTxt.setText("");
@@ -209,7 +208,7 @@ public class AddFragment extends Fragment {
 
     }
 
-    //调用系统组件选择日期并赋值
+    //call the calender function of android
     private void setTime()
     {
         Calendar calendar=Calendar.getInstance();
@@ -230,7 +229,7 @@ public class AddFragment extends Fragment {
 
     }
 
-    //调用系统组件选择时间并赋值
+    //call the calender function of android and set the data
     private void setHour()
     {
         Calendar calendar=Calendar.getInstance();

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">记账簿</string>
+    <string name="app_name">ExpenseManager</string>
     <string name="homeBtn">Details</string>
     <string name="addBtn">Record</string>
-    <string name="nameTitle">Target:</string>
+    <string name="nameTitle">Category:</string>
     <string name="noteTitle">Note:</string>
     <string name="valueTitle">Price(expense inputs negative):</string>
     <string name="orderIDTitle">OrderID:</string>
@@ -20,17 +20,17 @@
     <string name="CancleBtn">Cancle</string>
     <string name="OkBtn">OK</string>
     <string name="DeleteSuccess">Delete Success</string>
-    <string name="BottomTip">Click in the space to close</string>
+    <string name="BottomTip">Click the space area to close</string>
     <string name="All">All</string>
     <string name="In">Income</string>
     <string name="Out">Expense</string>
-    <string name="TargetTitle">Target:%s</string>
+    <string name="TargetTitle">Category:%s</string>
     <string name="NoteTitle">Note:%s</string>
     <string name="TypeTitle">Type:%s</string>
     <string name="PriceTitle">Price:%s</string>
     <string name="OrderIDTitle">OrderID:%s</string>
     <string name="TimeTitle">Time:%s</string>
     <!--ERROR-->
-    <string name="TargetCanNotBeEmpty">Target Can not be null!</string>
+    <string name="TargetCanNotBeEmpty">Category Can not be null!</string>
     <string name="SaveFailed">Save Failed!</string>
 </resources>

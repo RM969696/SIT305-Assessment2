@@ -25,7 +25,7 @@ import com.example.accountbook.R;
 
 import java.text.SimpleDateFormat;
 
-//账单item 信息类
+
 public class AccountMsgItemLayout extends ConstraintLayout {
 
     private Context superContext;
@@ -44,8 +44,8 @@ public class AccountMsgItemLayout extends ConstraintLayout {
     public AccountMsgItemLayout(Context context, ViewGroup root, Account_info _info)
     {
         super(context);
-        self =  LayoutInflater.from(context).inflate(R.layout.account_msg_item,root,false);//第三个参数传入false，当传true时，会有数据赋值失败的情况，false的时候要addview
-        root.addView(self);//addView必须要加在这里
+        self =  LayoutInflater.from(context).inflate(R.layout.account_msg_item,root,false);
+        root.addView(self);
         mainActivity = (MainActivity) context;
         superContext = context;
         info = _info;
@@ -65,7 +65,7 @@ public class AccountMsgItemLayout extends ConstraintLayout {
         init();
     }
 
-    //初始化，显示数据
+    //initialize
     private void init()
     {
         targetNameTxt.setText(info.target);
@@ -95,14 +95,14 @@ public class AccountMsgItemLayout extends ConstraintLayout {
         }
     };
 
-    //显示账单详情弹窗
+    //show the detail
     private void showMsgPanel()
     {
         Intent intent = new Intent(superContext, AccountMsgActivity.class);
         intent.putExtra("id",info.id);//传入参数 账单id
         superContext.startActivity(intent);
     }
-    //前往编辑账单
+    //navigate to the edit page
     private void showEditPanel()
     {
         mainActivity.showAddFragment(info);
@@ -127,7 +127,7 @@ public class AccountMsgItemLayout extends ConstraintLayout {
 
     private void deleteData()
     {
-        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//创建 or 打开 可读/写的数据库
+        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//create or open the database
         db.delete(Account_info.TableName,Account_info.Key_ID+ "=" +info.id,null);
         TipHelper.showContentTip(mainActivity,R.string.DeleteSuccess);
         AccountData.getInstance().DeleteAccountByID(info.id);

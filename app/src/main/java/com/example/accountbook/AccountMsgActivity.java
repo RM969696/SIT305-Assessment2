@@ -35,15 +35,14 @@ public class AccountMsgActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_msg_layout);
 
-        //取得传来的id
+        //get the passing id
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         int id = bundle.getInt("id");
 
-        //根据id获取数据
+        //get data by id
         info = AccountData.getInstance().GetInfoByID(id);
 
-        //空数据，界面关闭
         if(info == null)
             finish();
 
@@ -60,12 +59,12 @@ public class AccountMsgActivity extends Activity {
         init();
     }
 
-    //初始化,显示信息
+    //show the text
     private void init()
     {
         targetNameTxt.setText(String.format(TipHelper.getContent(this.getResources(),R.string.TargetTitle),info.target));
         noteTxt.setText(String.format(TipHelper.getContent(this.getResources(),R.string.NoteTitle),info.note.equals("")?"Null":info.note));
-        //时间格式化显示
+        //normalize the time and show
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String timeDesc = format.format(Long.parseLong(info.time));
         timeTxt.setText(String.format(TipHelper.getContent(this.getResources(),R.string.TimeTitle),timeDesc));
@@ -81,7 +80,7 @@ public class AccountMsgActivity extends Activity {
         }
     };
 
-    //点击背景关闭界面
+    //when click the space area, close it
     private void closePanel()
     {
         finish();

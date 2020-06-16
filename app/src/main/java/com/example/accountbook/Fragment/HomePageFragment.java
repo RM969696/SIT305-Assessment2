@@ -33,29 +33,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-//首页，账单列表
+
 public class HomePageFragment extends Fragment {
 
     private MainActivity mainActivity;
     private ScrollView scrollView;
     private LinearLayout root;
 
-    //日期下拉菜单，数据
+    //the drop down menu of date
     private Spinner dateSpinner;
     private List<String> dateList;
     private ArrayAdapter<String> dateAdapterList;
 
-    //收支类型下拉菜单，数据
+    //the drop down menu of type
     private Spinner typeSpinner;
     private List<String> typeList;
     private ArrayAdapter<String> typeAdapterList;
 
-    //提示
     private TextView emptyTipTxt;
 
-    //当前日期下拉框的位置，默认为0
+    //the position of selecData
     private int selectDatePos;
-    //当前收支类型下拉框的位置，默认为0
+    //当the position of selectType
     private int selectTypePos;
 
     public HomePageFragment() {
@@ -86,17 +85,17 @@ public class HomePageFragment extends Fragment {
 
     private void initSpinner()
     {
-        //初始化日期下拉菜单数据
+        //initialize the drop down menu for date
         if(dateList==null)
         {
             dateList=new ArrayList<>();
             dateList.add(TipHelper.getContent(mainActivity.getResources(),R.string.All));
             Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);//现在的年份
-            int month = calendar.get(Calendar.MONTH)+1;//现在的月份
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH)+1;
             for (int i = month;i > 0; i--)
             {
-                dateList.add(year+"-"+i);//格式化时间显示
+                dateList.add(year+"-"+i);
             }
         }
 
@@ -105,7 +104,7 @@ public class HomePageFragment extends Fragment {
             dateAdapterList = new ArrayAdapter<String>(mainActivity,R.layout.support_simple_spinner_dropdown_item,dateList);
         }
         dateSpinner.setAdapter(dateAdapterList);
-        dateSpinner.setSelection(0,true);//禁止OnItemSelectedListener默认自动调用一次
+        dateSpinner.setSelection(0,true);
         dateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -118,7 +117,7 @@ public class HomePageFragment extends Fragment {
             }
         });
 
-        //初始化收支类型下拉菜单
+        //initialize the drop down menu for type
         if(typeList==null)
         {
             typeList=new ArrayList<>();
@@ -133,7 +132,7 @@ public class HomePageFragment extends Fragment {
         }
 
         typeSpinner.setAdapter(typeAdapterList);
-        typeSpinner.setSelection(0,true);//禁止OnItemSelectedListener默认自动调用一次
+        typeSpinner.setSelection(0,true);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -148,20 +147,20 @@ public class HomePageFragment extends Fragment {
 
     }
 
-    //显示列表数据
+    //show the data
     private void init()
     {
         long dateMin = Long.MIN_VALUE;
         long dateMax = Long.MAX_VALUE;
-        if(selectDatePos != 0)//对日期进行了筛选，计算出日期最小值与最大值，符合范围的进行显示
+        if(selectDatePos != 0)//normalize the time value
         {
             try {
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");//格式化计算时间戳
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
                 Date date = formatter.parse(dateList.get(selectDatePos));
                 dateMin = date.getTime();
                 if(selectDatePos != 1)
                 {
-                    Date date1 = formatter.parse(dateList.get(selectDatePos-1));//获取下一个月的时间
+                    Date date1 = formatter.parse(dateList.get(selectDatePos-1));
                     dateMax = date1.getTime();
                 }
 
@@ -169,36 +168,36 @@ public class HomePageFragment extends Fragment {
             }catch (Exception e){}
         }
 
-        boolean all = selectTypePos==0;//不筛选时，为true
-        boolean in = selectTypePos == 1;//是否为收入
-        //上述条件有一个满足则符合收支筛选条件
+        boolean all = selectTypePos==0;
+        boolean in = selectTypePos == 1;
+        //set the filter
 
         root.removeAllViews();
         for (Account_info info : AccountData.getInstance().infoList)
         {
-            //时间不符合筛选条件，continue
+
             if( Long.parseLong(info.time)  >dateMax || Long.parseLong(info.time) < dateMin) continue;
 
-            //不筛选，或筛选且符合条件时，显示
+
             if(all || (in && info.value >0) ||(!in && info.value<0))
             {
                 AccountMsgItemLayout itemLayout = new AccountMsgItemLayout(mainActivity,root,info);
             }
         }
 
-        //根据是否有内容，进行提示
+        //show tips if need
         emptyTipTxt.setVisibility(root.getChildCount()>0?View.GONE:View.VISIBLE);
     }
 
     private void initData()
     {
-        //查询所有数据
-        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//创建 or 打开 可读/写的数据库
-        //第一个参数为sql语句，第二个当语句中有占位符时使用
+        //qury all data in database
+        SQLiteDatabase db= DateBaseHelper.Instance.getWritableDatabase();//create or open the database
+
         Cursor cursor = db.rawQuery(String.format("select * from '%s' order by time desc", Account_info.TableName),null );
         if(AccountData.getInstance().infoList==null) AccountData.getInstance().infoList = new ArrayList<>();
         else  AccountData.getInstance().infoList.clear();
-        //遍历赋值
+//        set the data
         while (cursor.moveToNext())
         {
             Account_info info = new Account_info();
@@ -210,7 +209,7 @@ public class HomePageFragment extends Fragment {
             info.value = Float.parseFloat(cursor.getString(cursor.getColumnIndex(Account_info.Key_Value)));
             AccountData.getInstance().infoList.add(info);
         }
-        //关闭数据库
+        //close the database
         db.close();
     }
 }
