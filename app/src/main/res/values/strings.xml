@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ExpenseManager</string>
     <string name="homeBtn">Details</string>
-    <string name="addBtn">Record</string>
+    <string name="addBtn">Add</string>
     <string name="nameTitle">Category:</string>
     <string name="noteTitle">Note:</string>
     <string name="valueTitle">Price(expense inputs negative):</string>
@@ -14,7 +14,7 @@
     <string name="UpdateSuccess">Modify Success</string>
     <string name="UpdateTip">Currently in modification status, switch tabs to cancel modification</string>
     <string name="Update">Modify</string>
-    <string name="emptyMsg">No Message，Click \'Record\' to Record</string>
+    <string name="emptyMsg">No Entry，Click \'Add\' to Add</string>
     <string name="DialogTitle">Warring</string>
     <string name="DialogContent">Do you want to delete？</string>
     <string name="CancleBtn">Cancle</string>

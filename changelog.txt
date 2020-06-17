@@ -1,0 +1,38 @@
+5/21/2020
+UI design
+The layout of the main page
+5/22/2020
+finished the layout of add page
+5/23/2020
+data and class creation
+set the id for each view of layout
+5/24/2020
+write the method of main page to show the fragments and data
+5/25/2020
+create the SQLite database
+The prototype had been finished
+5/26/2020
+add the function to edit the entries
+5/28/2020
+modified the functions of main page
+5/30/2020
+applied the SQLite database
+5/31/2020
+modified the tips for users
+6/4/2020
+adjust the layout of main page
+6/7/2020
+Weekly commit
+The function of add and edit finished
+6/10/2020
+adjust the functions of addfragment
+6/13/2020
+modified the add page and layout
+6/14/2020
+Weekly commit
+bug fixed
+layout adjusted
+prepare to release
+6/17/2020
+clearfy the notes of code
+publish
